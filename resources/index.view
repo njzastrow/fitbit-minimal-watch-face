@@ -1,0 +1,13 @@
+<svg class="background">
+  <text id="lblClock" />
+  <text id="lblDate" />
+  <image id="imgWeather" href="" />
+  <text id="lblPulse" class="stats row1 col1"/>
+  <image id="imgPulse" class="stats img row1 col1" href="../resources/icons/stats/pulse_icon.png" />
+  <text id="lblSteps" class="stats row1 col2"/>
+  <image id="imgSteps" class="stats img row1 col2" href="../resources/icons/stats/step_icon.png" />
+  <text id="lblCalories" class="stats row2 col1"/>
+  <image id="imgCalories" class="stats img row2 col1" href="../resources/icons/stats/calorie_icon.png" />
+  <text id="lblDistance" class="stats row2 col2"/>
+  <image id="imgDistance" class="stats img row2 col2" href="../resources/icons/stats/distance_icon.png" />
+</svg>

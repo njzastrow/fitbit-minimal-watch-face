@@ -1,0 +1,94 @@
+/* General face and clock settings */
+
+.background {
+  viewport-fill: #000000;
+  font-family: System-Regular;
+  fill: white;
+}
+
+#lblClock {
+  font-size: 115;
+  font-family: System-Bold;
+  text-length: 32;
+  text-anchor: middle;
+  x: 50%;
+  y: 25%+40;
+}
+
+#lblDate {
+  font-size: 30;
+  text-length: 32;
+  text-anchor: middle;
+  x: 50%;
+  y: 45%+30;
+}
+
+#imgWeather {
+  width: 55;
+  height: 55;
+  y: 43%;
+  x: 56%;
+}
+
+/* Stats section settings */
+
+.stats {
+  font-size: 35;
+}
+
+.stats.img {
+  width: 22;
+  height: 22;
+}
+
+.stats.row1 {
+  y: 70%
+}
+
+.stats.col1 {
+  x: 20%;
+}
+
+.stats.img.col1 {
+  x: 20%-25;
+}
+
+.stats.img.row1 {
+  y: 70%-22
+}
+
+.stats.row2 {
+  y: 85%
+}
+
+.stats.col2 {
+  x: 70%;
+}
+
+.stats.img.col2 {
+  x: 70%-25;
+}
+
+.stats.img.row2 {
+  y: 85%-22
+}
+
+#lblPulse {
+  text-length: 3;
+  fill: #BD1F1F;
+}
+
+#lblSteps {
+  text-length: 6;
+  fill: #0A822A;
+}
+
+#lblCalories {
+  text-length: 6;
+  fill: #FF6112;
+}
+
+#lblDistance {
+  text-length: 7;
+  fill: #3E5EFF;
+}

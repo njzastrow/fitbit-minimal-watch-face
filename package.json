@@ -1,0 +1,28 @@
+{
+  "devDependencies": {
+    "@fitbit/sdk": "~5.0.0"
+  },
+  "fitbit": {
+    "appUUID": "41f36551-a652-492a-a3a6-709fe881cc1b",
+    "appType": "clockface",
+    "appDisplayName": "MinimalWatchFace",
+    "iconFile": "resources/icon.png",
+    "wipeColor": "",
+    "requestedPermissions": [
+      "access_heart_rate",
+      "access_internet",
+      "access_location",
+      "access_activity",
+      "run_background"
+    ],
+    "buildTargets": [
+      "atlas"
+    ],
+    "i18n": {
+      "en-US": {
+        "name": "MinimalWatchFace"
+      }
+    },
+    "defaultLanguage": "en-US"
+  }
+}
