@@ -1,4 +1,4 @@
-<svg class="background">
+<svg class="background" id="main" pointer-events="visible">
   <text id="lblClock" />
   <text id="lblDate" />
   <image id="imgWeather" href="" />
@@ -10,4 +10,5 @@
   <image id="imgCalories" class="stats img row2 col1" href="../resources/icons/stats/calorie_icon.png" />
   <text id="lblDistance" class="stats row2 col2"/>
   <image id="imgDistance" class="stats img row2 col2" href="../resources/icons/stats/distance_icon.png" />
+  <rect id="btnRefresh" width="350" height="350" pointer-events="visible" />
 </svg>

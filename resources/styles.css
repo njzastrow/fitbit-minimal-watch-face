@@ -3,7 +3,10 @@
 .background {
   viewport-fill: #000000;
   font-family: System-Regular;
-  fill: white;
+}
+
+#btnRefresh {
+  opacity: 0;
 }
 
 #lblClock {
@@ -11,6 +14,7 @@
   font-family: System-Bold;
   text-length: 32;
   text-anchor: middle;
+  fill: white;
   x: 50%;
   y: 25%+40;
 }
@@ -19,6 +23,7 @@
   font-size: 30;
   text-length: 32;
   text-anchor: middle;
+  fill: white;
   x: 50%;
   y: 45%+30;
 }
@@ -27,7 +32,7 @@
   width: 55;
   height: 55;
   y: 43%;
-  x: 56%;
+  x: 55%;
 }
 
 /* Stats section settings */
@@ -62,11 +67,11 @@
 }
 
 .stats.col2 {
-  x: 70%;
+  x: 65%;
 }
 
 .stats.img.col2 {
-  x: 70%-25;
+  x: 65%-25;
 }
 
 .stats.img.row2 {
