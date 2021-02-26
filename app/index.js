@@ -23,13 +23,13 @@ const lblCalories = document.getElementById("lblCalories");
 const lblDistance = document.getElementById("lblDistance");
 
 // Used to update stats on the display
-function updateStats() {
-  if (appbit.permissions.granted("access_activity")) {
-    lblSteps.text = `${util.formatNumber(today.adjusted.steps)}`;
-    lblCalories.text = `${util.formatNumber(today.local.activeZoneMinutes.total)}` + 'min';
+function updateStats(){
+   if (appbit.permissions.granted("access_activity")) {
+     lblSteps.text = `${util.formatNumber(today.adjusted.steps)}`;
+     lblCalories.text = `${util.formatNumber(today.local.activeZoneMinutes.total)}`+ 'min' ;
     // Convert meters to freedom units
-    let miles = Math.round(today.adjusted.distance * 0.00062137 * 10) / 10;
-    lblDistance.text = `${miles}` + 'mi';
+     let miles = Math.round(today.adjusted.distance*0.00062137 * 10) / 10 ;
+     lblDistance.text = `${miles}` + 'mi';
   }
   // Get heart rate and set the lblPulse value based on it
   if (HeartRateSensor) {
@@ -38,7 +38,7 @@ function updateStats() {
       lblPulse.text = `${hrm.heartRate}`;
     });
     // This is called every clock tick so only start hrm if the display is on to preserve battery life
-    if (display.on) { hrm.start() }
+    if(display.on) {hrm.start()}
     // Start hrm when display turns on, stop it when it turns off
     display.addEventListener("change", () => {
       display.on ? hrm.start() : hrm.stop();
@@ -47,12 +47,12 @@ function updateStats() {
 }
 
 // Update stats when the display changes to on
-display.addEventListener("change", () => {
-  if (display.on) { updateStats() }
-});
+ display.addEventListener("change", () => {
+      if(display.on) {updateStats()}
+ });
 
 // Refresh weather and stats when you tap the screen. Mostly added for if the weather gets stuck when communication between the companion app and device derps.
-btnRefresh.onclick = function () {
+btnRefresh.onclick = function(){
   fetchWeather();
   updateStats();
 }
@@ -62,12 +62,12 @@ clock.ontick = (evt) => {
   let date = evt.date;
   let hours = date.getHours();
   // The display chooses the higher of the two values between Settings and brightnessOverride. Set display to dim in Settings so it's not so bright at night, override to normal during the day
-  if (hours >= 8 && hours <= 21) {
+  if (hours >= 8 && hours <= 21){ 
     display.brightnessOverride = "normal";
   }
   else {
     display.brightnessOverride = undefined;
-  }
+       }
   // Handle 12 or 24 hour format
   if (preferences.clockDisplay === "12h") {
     hours = hours % 12 || 12;

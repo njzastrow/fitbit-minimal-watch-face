@@ -1,44 +1,60 @@
 import { me as companion } from "companion";
 import * as messaging from "messaging";
 import { geolocation } from "geolocation";
+import { settingsStorage } from "settings";
 
-// TODO: Store this as a user setting so people can get and enter their own key
-var openWeatherMapAPIKey = "your api key here";
+// Try to read the OpenWeather API key from settings
+try {
+  var OpenWeatherAPIKey = JSON.parse(settingsStorage.getItem("OpenWeatherAPIKey")).name;
+}
+catch{
+  // No API key specified
+}
+
+// If a new key is set, update the value
+settingsStorage.addEventListener("change", (evt) => {
+  if (evt.key == "OpenWeatherAPIKey"){
+    OpenWeatherAPIKey = JSON.parse(evt.newValue).name;
+    }
+  });
 
 // Get geolocation info and pass it to the OpenWeatherMap API
 function queryOpenWeather() {
-  geolocation.getCurrentPosition(locationSuccess, locationError, {
-    timeout: 60 * 1000
-  });
+  // Only try to query weather if we have an API key
+  if (OpenWeatherAPIKey){
+    geolocation.getCurrentPosition(locationSuccess, locationError, {
+      timeout: 60 * 1000
+    });
 
-  // If geolocation succeeeds, pull updated weather info  
-  function locationSuccess(position) {
-    let url = "https://api.openweathermap.org/data/2.5/weather?units=imperial";
-    url += "&appid=" + openWeatherMapAPIKey;
-    url += "&lat=" + position.coords.latitude;
-    url += "&lon=" + position.coords.longitude;
-
+    // If geolocation succeeeds, pull updated weather info  
+    function locationSuccess(position) {
+      let url = "https://api.openweathermap.org/data/2.5/weather?units=imperial";
+      url +="&appid=" + OpenWeatherAPIKey;
+      url +="&lat=" + position.coords.latitude;
+      url +="&lon=" + position.coords.longitude;
+   
     fetch(url)
-      .then(function (response) {
+    .then(function (response) {
         response.json()
-          .then(function (data) {
-            // Parse temp and current weather icon from JSON response
-            var weather = {
-              temperature: data["main"]["temp"],
-              icon: data["weather"][0]["icon"]
-            }
-            // Send the weather data to the device
-            returnWeatherData(weather);
-          });
-      })
-      .catch(function (err) {
-        console.error(`Error fetching weather: ${err}`);
-      });
+        .then(function(data) {
+          // Parse temp and current weather icon from JSON response
+          var weather = {
+            temperature: data["main"]["temp"],
+            icon: data["weather"][0]["icon"]
+          }
+          // Send the weather data to the device
+          returnWeatherData(weather);
+        });
+    })
+    .catch(function (err) {
+      console.error(`Error fetching weather: ${err}`);
+    });
+    }
+    function locationError(error) {
+      console.log("Error: " + error.code, "Message: " + error.message);
+    }
   }
-  function locationError(error) {
-    console.log("Error: " + error.code, "Message: " + error.message);
-  }
-}
+ }
 
 // Send message back to device with weather info
 function returnWeatherData(data) {
